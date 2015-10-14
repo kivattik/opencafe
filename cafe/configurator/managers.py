@@ -402,7 +402,7 @@ class EngineDirectoryManager(object):
     # .opencafe Directories
     OPENCAFE_ROOT_DIR = os.path.join(
         PlatformManager.get_user_home_path(), ".opencafe")
-        print "root_dir" {0}".format(OPENCAFE_ROOT_DIR)
+    print "root_dir" {0}".format(OPENCAFE_ROOT_DIR)
 
     OPENCAFE_SUB_DIRS = _NamespaceDict(
         LOG_DIR=os.path.join(OPENCAFE_ROOT_DIR, 'logs'),
