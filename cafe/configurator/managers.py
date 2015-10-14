@@ -402,6 +402,7 @@ class EngineDirectoryManager(object):
     # .opencafe Directories
     OPENCAFE_ROOT_DIR = os.path.join(
         PlatformManager.get_user_home_path(), ".opencafe")
+        print "root_dir" {0}".format(OPENCAFE_ROOT_DIR)
 
     OPENCAFE_SUB_DIRS = _NamespaceDict(
         LOG_DIR=os.path.join(OPENCAFE_ROOT_DIR, 'logs'),
@@ -411,6 +412,7 @@ class EngineDirectoryManager(object):
 
     @classmethod
     def create_engine_directories(cls):
+        print "Attempt to create directories"
         print(cls.wrapper.fill('Creating default directories in {0}'.format(
             cls.OPENCAFE_ROOT_DIR)))
 
@@ -449,6 +451,7 @@ class EngineConfigManager(object):
     # Opencafe config defaults
     ENGINE_CONFIG_PATH = os.path.join(
         EngineDirectoryManager.OPENCAFE_ROOT_DIR, 'engine.config')
+    print "ENGINE_CONFIG_PATH: {0}".format(ENGINE_CONFIG_PATH)
 
     @staticmethod
     def rename_section(
