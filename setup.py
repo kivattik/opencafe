@@ -20,9 +20,12 @@ from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
 # Establish a consistent base directory relative to the setup file
-os.chdir(os.path.abspath(os.path.dirname(__file__)))
+print " ----------- PWD ---------------------"
+print os.path.realpath('.')
 
-print "----- PWD ----- "
+print " ----------- New ---------------------"
+os.chdir(os.path.abspath(os.path.dirname(__file__)))
+print " ----------- PWD ---------------------"
 print os.path.abspath(os.path.dirname(__file__))
 
 
