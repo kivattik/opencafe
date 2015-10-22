@@ -208,6 +208,7 @@ class ConfigParserDataSource(DataSource):
 class DictionaryDataSource(DataSource):
 
     def __init__(self, data, section_name):
+        super(DictionaryDataSource, self).__init__()
         self._data_source = data
         self._section_name = section_name
 
