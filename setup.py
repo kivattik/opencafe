@@ -47,6 +47,7 @@ plugins = []
 dir_path = os.path.join('cafe', 'plugins')
 for dirpath, directories, filenames in os.walk(dir_path):
     dirpath = dirpath.lstrip('cafe{0}'.format(os.sep))
+    print "... dirpath: {0} \n".format(dirpath)
     for f in filenames:
         if f.endswith('.pyc'):
             continue
