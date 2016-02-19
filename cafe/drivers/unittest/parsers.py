@@ -69,9 +69,9 @@ class SummarizeResults(object):
                     "errored": "error_trace"}
         if type_ == "passed":
             test_method_name = getattr(test, '_testMethodName', "")
-            if test_method_name:
-                test_time = getattr(test._reporter.testcase_times,
-                                    test_method_name, 0)
+            test_time = getattr(test, "_duration", 0)
+            if test_time:
+                test_time = test_time.total_seconds()
             dic = {"test_method_name": getattr(test, '_testMethodName', ""),
                    "test_class_name": "{0}.{1}".format(
                        str(test.__class__.__module__),
@@ -81,19 +81,17 @@ class SummarizeResults(object):
         elif (type_ in ["failures", "skipped", "errored"] and
               not isinstance(test[0], _ErrorHolder)):
             test_method_name = getattr(test[0], '_testMethodName', "")
-            if test_method_name and type_ != "skipped":
-                try:
-                    test_time = getattr(test[0]._reporter.testcase_times,
-                                        test_method_name, 0)
-                except AttributeError:
-                    test_time = 0
-            dic = {"test_method_name": getattr(test[0], '_testMethodName', ""),
+            test_time = getattr(test[0], "_duration", 0)
+            if test_time:
+                test_time = test_time.total_seconds()
+            dic = {"test_method_name": test_method_name,
                    "test_class_name": "{0}.{1}".format(
                        str(test[0].__class__.__module__),
                        str(test[0].__class__.__name__)),
                    msg_type.get(type_, "error_trace"): test[1],
                    "test_time": test_time}
         else:
+            print test
             dic = {"test_method_name": str(test[0]).split(" ")[0],
                    "test_class_name": str(test[0]).split("(")[1].rstrip(")"),
                    msg_type.get(type_, "error_trace"): test[1]}
