@@ -129,7 +129,9 @@ class FixtureReporter(object):
             return
 
         duration = self.test_metrics.timer.get_elapsed_time()
-        self.testcase_times[test_name] = int(duration.total_seconds())
+        print("{0} ran for {1} seconds".format(test_name,
+              str(duration.total_seconds())))
+        self.testcase_times[test_name] = str(duration.total_seconds())
 
         if test_result == TestResultTypes.PASSED:
             self.metrics.total_passed += 1
