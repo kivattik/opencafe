@@ -81,9 +81,12 @@ class SummarizeResults(object):
         elif (type_ in ["failures", "skipped", "errored"] and
               not isinstance(test[0], _ErrorHolder)):
             test_method_name = getattr(test[0], '_testMethodName', "")
-            if test_method_name:
-                test_time = getattr(test[0]._reporter.testcase_times,
-                                    test_method_name, 0)
+            if test_method_name and type_ != "skipped":
+                try:
+                    test_time = getattr(test[0]._reporter.testcase_times,
+                                        test_method_name, 0)
+                except AttributeError:
+                    test_time = 0
             dic = {"test_method_name": getattr(test[0], '_testMethodName', ""),
                    "test_class_name": "{0}.{1}".format(
                        str(test[0].__class__.__module__),
