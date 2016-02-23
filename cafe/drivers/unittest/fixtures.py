@@ -81,6 +81,7 @@ class BaseTestFixture(unittest.TestCase):
         cls.fixture_log = cls._reporter.logger.log
         cls._reporter.start()
         cls._class_cleanup_tasks = []
+        cls._duration = 0.00
 
     @classmethod
     def tearDownClass(cls):
@@ -104,7 +105,6 @@ class BaseTestFixture(unittest.TestCase):
                better pattern or working with the result object directly.
                This is related to the todo in L{TestRunMetrics}
         """
-        self._duration = 0.00
         if sys.version_info < (3, 4):
             if six.PY2:
                 report = self._resultForDoCleanups
