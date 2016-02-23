@@ -135,8 +135,6 @@ class BaseTestFixture(unittest.TestCase):
                                                   method):
                     self._reporter.stop_test_metrics(self._testMethodName,
                                                      'Failed')
-                    self._duration = self._reporter.test_metrics.timer.get_elapsed_time()
-
                 else:
                     self._reporter.stop_test_metrics(self._testMethodName,
                                                      'Passed')

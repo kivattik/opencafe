@@ -52,12 +52,12 @@ class FixtureReporter(object):
         self.logger = _FixtureLogger(parent_object)
         self.metrics = TestRunMetrics()
         self.report_name = str(get_object_namespace(parent_object))
-        self.testcase_times = {}
 
     def start(self):
         """Starts logging and metrics reporting for the fixture"""
         self.logger.start()
         self.metrics.timer.start()
+
         log_info_block(
             self.logger.log,
             [('Fixture', self.report_name),
@@ -125,13 +125,7 @@ class FixtureReporter(object):
                  ('Start Time', "Unknown, start_test_metrics was not called"),
                  ('Elapsed Time', "Unknown, start_test_metrics was not called")
                  ])
-            self.testcase_times[test_name] = 0
             return
-
-        duration = self.test_metrics.timer.get_elapsed_time()
-        print("{0} ran for {1} seconds".format(test_name,
-              str(duration.total_seconds())))
-        self.testcase_times[test_name] = str(duration.total_seconds())
 
         if test_result == TestResultTypes.PASSED:
             self.metrics.total_passed += 1
