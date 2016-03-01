@@ -91,7 +91,6 @@ class SummarizeResults(object):
                    msg_type.get(type_, "error_trace"): test[1],
                    "test_time": test_time}
         else:
-            print test
             dic = {"test_method_name": str(test[0]).split(" ")[0],
                    "test_class_name": str(test[0]).split("(")[1].rstrip(")"),
                    msg_type.get(type_, "error_trace"): test[1]}
